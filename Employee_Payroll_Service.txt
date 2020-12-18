@@ -48,3 +48,31 @@ UPDATE employee_payroll set gender='M'
     where name='Bill' or name ='Mark';
 UPDATE employee_payroll set gender='F' 
     where name='Charlie';
+
+--------------------------------------------------------------------
+
+UC7
+
+SELECT SUM(salary) FROM employee_payroll
+WHERE gender = 'F' GROUP BY gender;
+
+SELECT SUM(salary) FROM employee_payroll
+WHERE gender = 'M' GROUP BY gender;
+
+SELECT AVG(salary) FROM employee_payroll
+WHERE gender = 'F' GROUP BY gender;
+
+SELECT AVG(salary) FROM employee_payroll
+WHERE gender = 'M' GROUP BY gender;
+
+SELECT MIN(salary) FROM employee_payroll
+WHERE gender = 'F' GROUP BY gender;
+
+SELECT MAX(salary) FROM employee_payroll
+WHERE gender = 'M' GROUP BY gender;
+
+SELECT COUNT(ID) FROM employee_payroll
+WHERE gender = 'F';
+
+SELECT COUNT(ID) FROM employee_payroll
+WHERE gender = 'M';

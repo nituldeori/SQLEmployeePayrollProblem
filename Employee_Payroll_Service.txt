@@ -109,3 +109,43 @@ INSERT INTO employee_payroll
 ( name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) VALUES
 ('Terisa', 'Marketting', 'F', 3000000.00, 1000000.00, 2000000.00, 5000000.00, 1500000.00, '2010-01-03');
 
+----------------------------------------------------------------------------------------------------------------
+
+UC12
+
+CREATE TABLE employees
+( empid         INT unsigned NOT NULL AUTO_INCREMENT,
+  name          VARCHAR(150) NOT NULL,
+  phone_number  VARCHAR(250),
+  address       VARCHAR(250),
+  gender        CHAR(1),
+  deptid        INT unsigned NOT NULL,
+  payrollid     INT unsigned NOT NULL,
+  PRIMARY KEY(empid),
+  FOREIGN KEY(deptid,payrollid) REFERENCES (departments, payrolls)
+);
+
+CREATE TABLE departments
+( deptid        INT unsigned NOT NULL,
+  name          VARCHAR(150) NOT NULL
+  PRIMARY KEY(deptid)
+);
+
+CREATE TABLE payrolls
+( payrollid     INT unsigned NOT NULL,
+  basic_pay     Double NOT NULL,
+  deductions    DOUBLE NOT NULL,
+  taxable_pay   Double NOT NULL,
+  tax           Double NOT NULL,
+  net_pay       Double NOT NULL
+);
+
+SELECT employees.gender as gender, SUM(net_pay),AVG(net_pay),MIN(net_pay),
+       MAX(net_pay),as sumnetpay, avgnetpay, minnetpay, maxnetpay FROM employees
+       INNER JOIN payrolls ON employees.payrollid=payrolls.payrollid
+       group by gender;
+
+SELECT COUNT(empid) from employees GROUP BY gender; 
+       
+  
+
